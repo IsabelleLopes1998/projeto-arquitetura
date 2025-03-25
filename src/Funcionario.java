@@ -113,8 +113,9 @@ public abstract class Funcionario {
 
         Cliente clienteAtualizado = clienteBuilderAtualizado.criar();
 
-        System.out.println("Cliente atualizado");
         clienteController.atualizarCliente(clienteAtualizado);
+        System.out.println("Cliente atualizado");
+
     }
 
 

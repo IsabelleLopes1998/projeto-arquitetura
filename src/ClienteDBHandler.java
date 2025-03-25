@@ -90,7 +90,7 @@ public class ClienteDBHandler {
                     c.setDataNascimento(clienteAtualizado.getDataNascimento());
                     c.setTelefone(clienteAtualizado.getTelefone());
                 }
-                fw.write(c.getNome() + ";" + c.getCpf() + ";" + c.getDataNascimento() + ";" + c.getTelefone()  + "\n");
+                fw.write(clienteAtualizado.getNome() + ";" + clienteAtualizado.getCpf() + ";" + clienteAtualizado.getDataNascimento() + ";" + clienteAtualizado.getTelefone()  + "\n");
             }
 
             fw.flush();

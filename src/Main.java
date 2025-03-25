@@ -18,7 +18,7 @@ public class Main {
 
        //funcionario.atualizarCliente();
 
-        funcionario.removerCliente();
+        //funcionario.removerCliente();
     }
 
 }
