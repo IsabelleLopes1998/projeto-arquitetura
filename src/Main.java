@@ -3,15 +3,22 @@
 public class Main {
     public static void main(String[] args){
         Funcionario funcionario;
+
         FuncionarioFactory ff = new FuncionarioFactory();
+
         try {
             funcionario = ff.criarFuncionario(ff.COD_VENDEDOR);
         } catch (ClassNotFoundException e) {
             throw new RuntimeException(e);
         }
 
-        funcionario.addProduto();
-        funcionario.addCliente();
+        //funcionario.addCliente();
+
+        //funcionario.ListarClientes();
+
+       //funcionario.atualizarCliente();
+
+        funcionario.removerCliente();
     }
 
 }

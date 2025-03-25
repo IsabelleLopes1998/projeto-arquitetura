@@ -76,16 +76,19 @@ public class ClienteDBHandler {
         }
     }
 
-    public static void atualizarProduto(Cliente clienteAtualizado) {
+    public static void atualizarCliente(Cliente clienteAtualizado) {
         ArrayList<Cliente> cliente = listarClientes();
 
         try {
             FileWriter fw = new FileWriter(camainhoArquivo, StandardCharsets.ISO_8859_1);
-            fw.write("Id;tipo;nome;descricao;preco;quantidade\n");
+            fw.write("Nome;CPF;Data_De_Nascimento;Telefone\n");
 
             for (Cliente c : cliente) {
                 if (c.getCpf().equalsIgnoreCase(clienteAtualizado.getCpf())) {
-                    c = clienteAtualizado;
+                    c.setNome(clienteAtualizado.getNome());
+                    c.setCpf(clienteAtualizado.getCpf());
+                    c.setDataNascimento(clienteAtualizado.getDataNascimento());
+                    c.setTelefone(clienteAtualizado.getTelefone());
                 }
                 fw.write(c.getNome() + ";" + c.getCpf() + ";" + c.getDataNascimento() + ";" + c.getTelefone()  + "\n");
             }

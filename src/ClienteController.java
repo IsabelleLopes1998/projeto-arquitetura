@@ -12,9 +12,9 @@ public class ClienteController {
     public void listarClientes(){
         clienteDbHandler.listarClientes();
     }
-
     public void removerClientePorCpf(String cpf){
         clienteDbHandler.removerClientePorCpf(cpf);
     }
+    public void atualizarCliente(Cliente cliente){clienteDbHandler.atualizarCliente(cliente);}
 
 }

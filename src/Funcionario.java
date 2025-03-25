@@ -53,7 +53,7 @@ public abstract class Funcionario {
         String cpf = sc.nextLine();
         clienteBuilder.setCpf(cpf);
 
-        System.out.println("Digite a deta de nascimento do cliente:");
+        System.out.println("Digite a data de nascimento do cliente:");
         String dataNascimento = sc.nextLine();
         clienteBuilder.setDataNascimento(dataNascimento);
 
@@ -78,7 +78,7 @@ public abstract class Funcionario {
         System.out.println("Produto deletado");
     }
 
-    public void deletarCliente(){
+    public void removerCliente(){
         Scanner sc = new Scanner(System.in);
         System.out.println("Qual o CPF do cliente que você quer deletar? ");
         String cpf = sc.nextLine();
@@ -87,7 +87,35 @@ public abstract class Funcionario {
         System.out.println("Cliente deletado");
     }
 
-    
+    public void ListarClientes(){
+        clienteController.listarClientes();
+    }
+
+    public void atualizarCliente(){
+        Scanner sc = new Scanner(System.in);
+        ClienteBuilder clienteBuilderAtualizado = new ClienteBuilder();
+
+        System.out.println("Qual o CPF do cliente que você quer atualizar?");
+        String cpf = sc.nextLine();
+        clienteBuilderAtualizado.setCpf(cpf);
+
+        System.out.println("Digite o nome do cliente: ");
+        String nome = sc.nextLine();
+        clienteBuilderAtualizado.setNome(nome);
+
+        System.out.println("Digite a data de nascimento do cliente:");
+        String dataNascimento = sc.nextLine();
+        clienteBuilderAtualizado.setDataNascimento(dataNascimento);
+
+        System.out.println("Digite o telefone do cliente:");
+        String telefone = sc.nextLine();
+        clienteBuilderAtualizado.setTelefone(telefone);
+
+        Cliente clienteAtualizado = clienteBuilderAtualizado.criar();
+
+        System.out.println("Cliente atualizado");
+        clienteController.atualizarCliente(clienteAtualizado);
+    }
 
 
 }
