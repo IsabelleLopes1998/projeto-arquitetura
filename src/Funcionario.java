@@ -118,5 +118,9 @@ public abstract class Funcionario {
 
     }
 
+    public void imprimirClientes(){
+        clienteController.imprimirClientes();
+    }
+
 
 }

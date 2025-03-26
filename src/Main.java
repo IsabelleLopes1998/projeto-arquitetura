@@ -13,12 +13,11 @@ public class Main {
         }
 
         //funcionario.addCliente();
+        //funcionario.imprimirClientes();
 
-        //funcionario.ListarClientes();
+        //funcionario.atualizarCliente();
 
-       //funcionario.atualizarCliente();
-
-        //funcionario.removerCliente();
+        funcionario.removerCliente();
     }
 
 }

@@ -2,6 +2,7 @@ import java.io.*;
 import java.nio.charset.StandardCharsets;
 import java.util.ArrayList;
 import java.util.Iterator;
+import java.util.List;
 
 public class ClienteDBHandler {
 
@@ -58,39 +59,41 @@ public class ClienteDBHandler {
                     String dataNascimento = partes[2];
                     String telefone = partes[3];
 
-                    Cliente cliente = new Cliente(nome, cpf, dataNascimento,telefone);
-
+                    Cliente cliente = new Cliente(nome, cpf, dataNascimento, telefone);
                     listaCliente.add(cliente);
-                    PrintStream var10000 = System.out;
-                    String var10001 = cliente.getNome();
-
-                    var10000.println("Nome: " + var10001 + ", cpf: " + cliente.getCpf() + ", Data de Nascimento: " + cliente.getDataNascimento() + ", Telefone: " + cliente.getTelefone());
                 }
             }
 
             leitor.close();
             return listaCliente;
-        } catch (Exception var13) {
-            Exception e = var13;
+
+        } catch (Exception e) {
             throw new RuntimeException(e);
         }
     }
 
+
     public static void atualizarCliente(Cliente clienteAtualizado) {
-        ArrayList<Cliente> cliente = listarClientes();
+        ArrayList<Cliente> clientes = listarClientes();
 
         try {
             FileWriter fw = new FileWriter(camainhoArquivo, StandardCharsets.ISO_8859_1);
-            fw.write("Nome;CPF;Data_De_Nascimento;Telefone\n");
+            fw.write("Nome;cpf;dataNascimento;Telefone\n");
 
-            for (Cliente c : cliente) {
+            for (Cliente c : clientes) {
                 if (c.getCpf().equalsIgnoreCase(clienteAtualizado.getCpf())) {
                     c.setNome(clienteAtualizado.getNome());
-                    c.setCpf(clienteAtualizado.getCpf());
                     c.setDataNascimento(clienteAtualizado.getDataNascimento());
                     c.setTelefone(clienteAtualizado.getTelefone());
+
+                    System.out.println("Cliente atualizado:");
+                    System.out.println("Nome: " + clienteAtualizado.getNome()
+                            + ", CPF: " + clienteAtualizado.getCpf()
+                            + ", Data de Nascimento: " + clienteAtualizado.getDataNascimento()
+                            + ", Telefone: " + clienteAtualizado.getTelefone());
+
                 }
-                fw.write(clienteAtualizado.getNome() + ";" + clienteAtualizado.getCpf() + ";" + clienteAtualizado.getDataNascimento() + ";" + clienteAtualizado.getTelefone()  + "\n");
+                fw.write(c.getNome() + ";" + c.getCpf() + ";" + c.getDataNascimento() + ";" + c.getTelefone()  + "\n");
             }
 
             fw.flush();
@@ -147,6 +150,22 @@ public class ClienteDBHandler {
         } catch (Exception var9) {
             e = var9;
             throw new RuntimeException("Erro ao remover cliente: " + e.getMessage(), e);
+        }
+    }
+
+    public static void imprimirClientes() {
+        List<Cliente> clientes = listarClientes();
+
+        if (clientes.isEmpty()) {
+            System.out.println("Nenhum cliente encontrado.");
+            return;
+        }
+
+        for (Cliente c : clientes) {
+            System.out.println("Nome: " + c.getNome()
+                    + ", CPF: " + c.getCpf()
+                    + ", Data de Nascimento: " + c.getDataNascimento()
+                    + ", Telefone: " + c.getTelefone());
         }
     }
 }
