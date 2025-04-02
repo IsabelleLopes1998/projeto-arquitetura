@@ -12,33 +12,6 @@ public abstract class Funcionario {
     ClienteController clienteController;
 
 
-    public Produto addProduto(){
-        System.out.println("Criando produto");
-        ProdutoBuilder produtoBuilder = new ProdutoBuilder();
-        Scanner sc = new Scanner(System.in);
-        System.out.println("Digite o nome do produto: ");
-        String nome = sc.nextLine();
-        produtoBuilder.setNome(nome);
-        System.out.println("Digite o tipo do produto:");
-        String tipo = sc.nextLine();
-        produtoBuilder.setTipo(tipo);
-        System.out.println("Digite a descrição do produto:");
-        String descricao = sc.nextLine();
-        produtoBuilder.setDescricao(descricao);
-        System.out.println("Digite o quantidade do produto:");
-        produtoBuilder.setQuantidade(sc.nextInt());
-        System.out.println("Digite o valor da produto:");
-        double valor = sc.nextDouble();
-        sc.nextLine();
-        produtoBuilder.setPreco(valor);
-        System.out.println("Digite o id do produto:");
-        int id = sc.nextInt();
-        produtoBuilder.setId(id);
-        Produto produto = produtoBuilder.criar();
-        System.out.println("Produto criado");
-        produtoController.addProduto(produto);
-        return produto;
-    }
 
     public Cliente addCliente(){
         System.out.println("Cadastrando cliente");
@@ -69,14 +42,6 @@ public abstract class Funcionario {
         return cliente;
     }
 
-    public void deletarProduto(){
-        Scanner sc = new Scanner(System.in);
-        System.out.println("Qual o Id do produto que você quer deletar? ");
-        int id = sc.nextInt();
-        sc.nextLine();
-        produtoController.removerProdutoPorId(id);
-        System.out.println("Produto deletado");
-    }
 
     public void removerCliente(){
         Scanner sc = new Scanner(System.in);
@@ -123,4 +88,107 @@ public abstract class Funcionario {
     }
 
 
+
+    public Produto addProduto(){
+        System.out.println("Criando produto");
+        ProdutoBuilder produtoBuilder = new ProdutoBuilder();
+        Scanner sc = new Scanner(System.in);
+
+        System.out.println("Digite o id do produto:");
+        int id = sc.nextInt();
+        sc.nextLine();
+        produtoBuilder.setId(id);
+
+        System.out.println("Digite o tipo do produto:");
+        String tipo = sc.nextLine();
+        produtoBuilder.setTipo(tipo);
+
+        System.out.println("Digite o nome do produto: ");
+        String nome = sc.nextLine();
+        produtoBuilder.setNome(nome);
+
+        System.out.println("Digite a descrição do produto:");
+        String descricao = sc.nextLine();
+        produtoBuilder.setDescricao(descricao);
+
+        System.out.println("Digite o quantidade do produto:");
+        int qtd = sc.nextInt();
+        sc.nextLine();
+        produtoBuilder.setQuantidade(qtd);
+
+        System.out.println("Digite o valor da produto:");
+        double valor = sc.nextDouble();
+        sc.nextLine();
+        produtoBuilder.setPreco(valor);
+
+
+        Produto produto = produtoBuilder.criar();
+        System.out.println("Produto criado");
+
+        produtoController.addProduto(produto);
+        return produto;
+    }
+
+
+
+    public void atualizarProduto(){
+        Scanner sc = new Scanner(System.in);
+        ProdutoBuilder produtoBuilderAtualizado = new ProdutoBuilder();
+
+
+        System.out.println("Qual o id do produto que você quer atualizar?");
+        int id = sc.nextInt();
+        sc.nextLine();
+        produtoBuilderAtualizado.setId(id);
+
+        System.out.println("Digite o tipo do produto: ");
+        String tipo = sc.nextLine();
+        produtoBuilderAtualizado.setTipo(tipo);
+
+
+        System.out.println("Digite o nome do produto: ");
+        String nome = sc.nextLine();
+        produtoBuilderAtualizado.setNome(nome);
+
+        System.out.println("Digite a descrição do produto: ");
+        String descricao = sc.nextLine();
+        produtoBuilderAtualizado.setDescricao(descricao);
+
+        System.out.println("Digite o preço do produto:");
+        double preco = sc.nextDouble();
+        produtoBuilderAtualizado.setPreco(preco);
+
+        System.out.println("Digite a quantidade do produto:");
+        int qtd = sc.nextInt();
+        sc.nextLine();
+        produtoBuilderAtualizado.setQuantidade(qtd);
+
+        Produto produtoAtualizado = produtoBuilderAtualizado.criar();
+
+        produtoController.atualizarProduto(produtoAtualizado);
+        System.out.println("Produto atualizado");
+
+    }
+    public void buscarProdutoPorId(){
+        System.out.println("Id do produto a procurar: ");
+        Scanner sc = new Scanner(System.in);
+        int id = sc.nextInt();
+        sc.nextLine();
+
+        produtoController.buscarProdutoPorid(id);
+    }
+
+
+    public void removerProdutoPorId(){
+        Scanner sc = new Scanner(System.in);
+        System.out.println("Qual o Id do produto que você quer deletar? ");
+        int id = sc.nextInt();
+        sc.nextLine();
+        produtoController.removerProdutoPorId(id);
+        System.out.println("Produto deletado");
+    }
+    public void imprimirProdutos(){
+        produtoController.imprimirProdutos();
+    }
 }
+

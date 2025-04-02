@@ -16,8 +16,6 @@ public class ClienteController {
         clienteDbHandler.removerClientePorCpf(cpf);
     }
     public void atualizarCliente(Cliente cliente){clienteDbHandler.atualizarCliente(cliente);}
-    public void imprimirClientes(){
-        clienteDbHandler.imprimirClientes();
-    }
+    public void imprimirClientes(){clienteDbHandler.imprimirClientes();}
 
 }

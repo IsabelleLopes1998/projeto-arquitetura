@@ -153,6 +153,56 @@ public class ClienteDBHandler {
         }
     }
 
+
+    public static Cliente buscarClientePorCPF(String cpf) {
+        Cliente clienteEncontrado = null;
+
+        try {
+            BufferedReader leitor = new BufferedReader(new FileReader(camainhoArquivo));
+            boolean primeiraLinha = true;
+            String linha;
+
+            while((linha = leitor.readLine()) != null) {
+                if (primeiraLinha) {
+                    primeiraLinha = false;
+                } else {
+                    String[] partes = linha.split(";");
+                    String cpfCliente = partes[1];
+
+                    if (cpfCliente.equalsIgnoreCase(cpf)) {
+
+                        String nome = partes[0];
+                        String cpfC = partes[1];
+                        String dataNascimento = partes[2];
+                        String telefone = partes[3];
+
+
+                        clienteEncontrado = new Cliente(nome, cpfC, dataNascimento, telefone);
+                        break;
+                    }
+                }
+            }
+
+            leitor.close();
+
+
+            if (clienteEncontrado != null) {
+                System.out.println("Cliente encontrado: ");
+                System.out.println("Nome: " + clienteEncontrado.getNome());
+                System.out.println("CPF: " + clienteEncontrado.getCpf());
+                System.out.println("Data de nascimento: " + clienteEncontrado.getDataNascimento());
+                System.out.println("Telefone: " + clienteEncontrado.getTelefone());
+            } else {
+                System.out.println("Cliente não encontrado.");
+            }
+
+            return clienteEncontrado;
+
+        } catch (Exception e) {
+            throw new RuntimeException("Erro ao buscar produto por ID: " + e.getMessage(), e);
+        }
+    }
+
     public static void imprimirClientes() {
         List<Cliente> clientes = listarClientes();
 
